@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_pruebasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="db_pruebasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Detalles_Empleado" EntityType="db_pruebasModel.Detalles_Empleado" />
+    <EntitySet Name="Empleado" EntityType="db_pruebasModel.Empleado" />
+    <AssociationSet Name="FK__Detalles___fk_em__276EDEB3" Association="db_pruebasModel.FK__Detalles___fk_em__276EDEB3">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Detalles_Empleado" EntitySet="Detalles_Empleado" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Detalles_Empleado">
+    <Key>
+      <PropertyRef Name="id_detalle" />
+    </Key>
+    <Property Name="id_detalle" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="fk_empleado" Type="Int32" />
+    <NavigationProperty Name="Empleado" Relationship="db_pruebasModel.FK__Detalles___fk_em__276EDEB3" FromRole="Detalles_Empleado" ToRole="Empleado" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Detalles_Empleado" Relationship="db_pruebasModel.FK__Detalles___fk_em__276EDEB3" FromRole="Empleado" ToRole="Detalles_Empleado" />
+  </EntityType>
+  <Association Name="FK__Detalles___fk_em__276EDEB3">
+    <End Type="db_pruebasModel.Empleado" Role="Empleado" Multiplicity="0..1" />
+    <End Type="db_pruebasModel.Detalles_Empleado" Role="Detalles_Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Detalles_Empleado">
+        <PropertyRef Name="fk_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_pruebasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Detalles_Empleado">
+    <Key>
+      <PropertyRef Name="id_detalle" />
+    </Key>
+    <Property Name="id_detalle" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nchar" MaxLength="50" />
+    <Property Name="Telefono" Type="nchar" MaxLength="10" />
+    <Property Name="fk_empleado" Type="int" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="pass" Type="varchar" MaxLength="50" />
+    <Property Name="mail" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Detalles___fk_em__276EDEB3">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Detalles_Empleado" Type="Self.Detalles_Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Detalles_Empleado">
+        <PropertyRef Name="fk_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_pruebasModelStoreContainer">
+    <EntitySet Name="Detalles_Empleado" EntityType="Self.Detalles_Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Detalles___fk_em__276EDEB3" Association="Self.FK__Detalles___fk_em__276EDEB3">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Detalles_Empleado" EntitySet="Detalles_Empleado" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

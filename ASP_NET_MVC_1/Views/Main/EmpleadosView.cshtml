@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ASP_NET_MVC_1.Models.Empleado>
+
+@{
+    ViewBag.Title = "EmpleadosView";
+}
+
+<h2>EmpleadosView</h2>      
+
+<p>
+    @Html.ActionLink("Create New", "NuevoEmpleadoView")
+    <button name="Delete" value="" onclick="" class="btn">Cambiar Layout</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mail)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Editar", "EditarRegistro", new { id = item.id }, new { @class = "btn" }) |
+            @Html.ActionLink("Detalles", "DetailView", new { id = item.id }, new { @class = "btn" }) |            
+            <button name="Delete" value=""  onclick="mensajes(@item.id)" class="btn" >Delete</button>
+           
+            @*@Html.ActionLink("Details", "Details", new { id = item.id })*@ |
+            @*<button name="Delete" value="" onclick="mensajes(@item.id)" class="btn">Details</button>*@
+            <!-- Html.ActionLink("Delete", "Delete", new { id=item.id }, new { onclick=("mensajes()")})-->
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    function mensajes(id)
+    {
+        alert("Usted no tiene permisos para eliminar: "+id);
+        return false;
+    }
+
+    function CambiarLayout(id) {
+        alert("Usted no tiene permisos para eliminar: " + id);
+        return false;
+    }
+       
+</script>

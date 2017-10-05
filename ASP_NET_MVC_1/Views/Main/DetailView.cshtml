@@ -1,0 +1,82 @@
+﻿@model  List<ASP_NET_MVC_1.Models.Detail_FK>
+
+@{
+    ViewBag.Title = "DetailView";
+}
+
+<h2>DetailView</h2>
+
+<div>
+    <h4>Detalles_Empleado</h4>
+    <hr />
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.id_detalle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.id_detalle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Telefono)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fk_empleado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fk_empleado)
+            </dd>
+
+        </dl>*@
+
+
+    <table class="table">
+        <tr>
+            <th>
+               Empleado
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td></td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Editar", "EditarRegistro", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Atras", "EmpleadosView")
+</p>
